@@ -6,22 +6,23 @@ package:
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/python-vxi11-{{ version }}.tar.gz
+  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/python-vxi11-{{ version }}.tar.gz
   sha256: 01fbd8d5be09352c6be46ae474a47d4fe44be2989f7e977c578c55733b076dff
 
 build:
   noarch: python
   script: {{ PYTHON }} -m pip install . -vv
-  number: 0
+  number: 1
   entry_points:
     - vxi11-cli = vxi11.cli:main
 
 requirements:
   host:
-    - python >=3.6
+    - python {{ python_min }}
     - pip
+    - setuptools
   run:
-    - python >=3.6
+    - python >={{ python_min }}
     - __unix
 
 test:
@@ -32,6 +33,7 @@ test:
     - vxi11-cli --help
   requires:
     - pip
+    - python {{ python_min }}
 
 about:
   home: http://alexforencich.com/wiki/en/python-vxi11/start
