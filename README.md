@@ -16,7 +16,6 @@ Documentation: http://alexforencich.com/wiki/en/python-vxi11/start
 This Python package supports the VXI-11 Ethernet instrument
 control protocol for controlling VXI11 and LXI compatible instruments.
 
-
 Current build status
 ====================
 
