@@ -26,21 +26,20 @@ requirements:
     - pip
     - setuptools
   run:
-    - python >=${{ python_min }}
+    - python >=${{ python_min }},<3.13
     - __unix
 
 tests:
   - python:
       imports:
         - vxi11
-      python_version: ${{ python_min }}.*
-  - requirements:
-      run:
-        - pip
-        - python ${{ python_min }}.*
-    script:
-      - pip check
+      python_version: ["${{ python_min }}.*", "3.*"]
+      pip_check: true
+  - script:
       - vxi11-cli --help
+    requirements:
+      run:
+        - python ${{ python_min }}.*
 
 about:
   summary: Python VXI-11 driver for controlling instruments over Ethernet
